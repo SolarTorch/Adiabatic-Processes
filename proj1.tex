@@ -1,0 +1,503 @@
+%% LyX 2.1.2.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[oneside]{amsart}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+\geometry{verbose,lmargin=2.5cm,rmargin=2.5cm}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{esint}
+\usepackage{cite}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% A simple dot to overcome graphicx limitations
+\newcommand{\lyxdot}{.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}
+  \theoremstyle{plain}
+  \newtheorem{conjecture}[thm]{\protect\conjecturename}
+  \theoremstyle{plain}
+  \newtheorem*{thm*}{\protect\theoremname}
+  \theoremstyle{plain}
+  \newtheorem{fact}[thm]{\protect\factname}
+ \newlist{casenv}{enumerate}{4}
+ \setlist[casenv]{leftmargin=*,align=left,widest={iiii}}
+ \setlist[casenv,1]{label={{\itshape\ \casename} \arabic*.},ref=\arabic*}
+ \setlist[casenv,2]{label={{\itshape\ \casename} \roman*.},ref=\roman*}
+ \setlist[casenv,3]{label={{\itshape\ \casename\ \alph*.}},ref=\alph*}
+ \setlist[casenv,4]{label={{\itshape\ \casename} \arabic*.},ref=\arabic*}
+  \theoremstyle{definition}
+  \newtheorem{example}[thm]{\protect\examplename}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage{cite}
+
+
+
+
+\newtheorem{theorem}{}\newtheorem{axiom}[theorem]{}\newtheorem{corollary}{}[theorem]
+
+\newcommand{\jk}[2]{ J_{k-1}\left (4 \pi \frac{ \sqrt{ #1 } }{ #2 } \right) }
+\newcommand{\er}{E}
+\DeclareMathOperator*{\res}{Res}
+
+\DeclareMathOperator{\li}{li}
+
+
+
+  \providecommand{\claimname}{Claim}
+  \providecommand{\conjecturename}{Conjecture}
+  \providecommand{\remarkname}{Remark}
+\providecommand{\theoremname}{Theorem}
+
+\makeatother
+
+  \providecommand{\conjecturename}{Conjecture}
+  \providecommand{\examplename}{Example}
+  \providecommand{\factname}{Fact}
+  \providecommand{\theoremname}{Theorem}
+ \providecommand{\casename}{Case}
+\providecommand{\theoremname}{Theorem}
+
+\begin{document}
+
+\title{Adiabatic Processes}
+
+
+\author{Helang Liu, Ruizhi Deng}
+
+
+\date{March 1, 2015}
+
+\maketitle
+
+\section{Introduction}
+
+The adiabatic process happens in physical phenomena including oscillation
+and thermal transmssion without transfer of heat and matter between
+a system and its surroundings. This project focuses on the adiabatic
+process of an osciallating system. For a single oscillator, we have
+the oscillation equation 
+\[
+\ddot{x}+\omega(t)^{2}x=0.
+\]
+The energy of the system can be described by the function 
+\[
+E(t)=\frac{(x'(t))^{2}}{2}+\frac{\omega^{2}(t)(x(t))^{2}}{2}.
+\]
+In the equation and function above, $\omega(t)$ is the angular velocity
+and is directly proportional to frequency. $x(t)$ is the displacement,
+and $E(t)$ is the energy of the whole system. This project explores
+how $x$ and $E$ behave with different oscillating functions.
+
+
+\section{special cases of $\omega$}
+
+Let's first consider the simplest oscillating system, the pendulum.
+In this speicial case, we assume the initial velocity is nonezero
+and $\omega(t)$ is a constant. Suppose $\omega(t)=\omega_{0}$, then
+$\omega(t)^{2}=\omega_{0}^{2}$, $x''(t)+\omega_{0}^{2}x=0$, we have
+
+\[
+x''(t)=-\omega(t)^{2}x(t)=-\omega_{0}^{2}x(t).
+\]
+Solve the equation and we get\begin{center} 
+\begin{eqnarray*}
+x(t) & = & c_{1}\sin(|\omega_{0}|t)+c_{2}\sin(|\omega_{0}|t)\\
+x'(t) & = & c_{1}|\omega_{0}|\sin(|\omega_{0}|t)-c_{2}|\omega_{0}|\cos(|\omega_{0}|t)\\
+x''(t) & = & -\omega_{0}^{2}(c_{1}\cos t+c_{2}\cos t)=-c_{1}\omega_{0}^{2}\cos t-c_{2}\omega_{0}^{2}\sin t
+\end{eqnarray*}
+\end{center} for some $c_{1},c_{2}\in R$. The energy of the system
+$E=\frac{(x'(t))^{2}}{2}+\frac{\omega_{0}^{2}(x(t))^{2}}{2}$ and
+$E'=x'(t)x''(t)+\omega_{0}^{2}x(t)x'(t)=0$. 
+
+Hence, if $\omega$ is a constant, the displacement, $x$, is periodic
+and the energy $E$ is also a constant. The period the displacement
+function will decrease if $\omega$increases. This result also makes
+sense in the physical context. If the frequency always remains the
+same, there should be no unbalanced external forces that drive the
+system and the total energy definitely won't change.
+
+For other cases of $\omega(t)$, write a program in Python to simulate
+the motion of the oscillator and we record $\omega^{2}$ and $E$
+every 0.1 second.
+
+If $\omega(t)=\epsilon\cdot t+\omega_{0}$ for some $\epsilon\neq0$,
+the function $\omega(t)$ is linear. We find out that $E(t)$ is not
+a linear function about t. We set $\omega_{0}=5$ and $\varepsilon=0.1$
+Below are the scatter plots of Energy vs Time and Energy vs Square
+of angular velocity:
+
+\begin{figure}[H]
+\begin{centering}
+\protect\caption{$\omega(t)=5+0.1\times t$}
+
+\par\end{centering}
+
+\centering{}\includegraphics[width=6cm,height=5cm]{li_EvT}\includegraphics[width=6cm,height=5cm]{li_EvS}
+\end{figure}
+
+
+We can easily see that energy function of time t can approximate by
+a quadratic function, $E(t)=0.06t^{2}+2.4t+24.016$ and the relation
+between $E$ and $\omega^{2}$ can be approximated by $E=6.0017\omega^{2}+0.029$.
+
+We repeat this process for by setting $\omega=\sqrt{5+0.1t},\omega=\sin t,\omega=\sin t+3,\,\mbox{and }\omega=e^{t}$.
+Below are the scatter plots of and Energy vs time and Energy vs Square
+of angular velocity based on the data we collected.
+
+\setlength{\parindent}{0pt}
+
+~
+
+\begin{figure}[H]
+\begin{centering}
+\protect\caption{$\omega(t)=\sqrt{5+0.1\times t}$}
+
+\par\end{centering}
+
+\centering{}\includegraphics[width=6cm,height=5cm]{sq_EvT}\includegraphics[width=6cm,height=5cm]{sq_EvS}
+\end{figure}
+
+
+\begin{figure}[H]
+\begin{centering}
+\protect\caption{$\omega(t)=\sin(t)$}
+
+\par\end{centering}
+
+\centering{}\includegraphics[width=6cm,height=5cm]{si_EvT}\includegraphics[width=6cm,height=5cm]{si_EvS}
+\end{figure}
+
+
+\begin{figure}[H]
+\begin{centering}
+\protect\caption{$\omega(t)=\sin(t)+3$}
+
+\par\end{centering}
+
+\centering{}\includegraphics[width=6cm,height=5cm]{s3_EvT}\includegraphics[width=6cm,height=5cm]{s3_EvS}
+\end{figure}
+
+
+\begin{figure}[H]
+\begin{centering}
+\protect\caption{$\omega(t)=e^{t}$}
+
+\par\end{centering}
+
+\centering{}\includegraphics[width=6cm,height=5cm]{ex_EvT}\includegraphics[width=6cm,height=5cm]{ex-EvS}
+\end{figure}
+
+
+
+\section{Discoveries and Conjectures:}
+
+\ \setlength{\parindent}{15pt}
+
+As can be seen from most of the scatter plots of Energy vs Square
+of Frequency above, the relation between $E$ and $\omega^{2}$ can
+be approximated by a linear relation. Notice that there's no clear
+relation between $E$ and $\omega^{2}$ in the scatter plots of Energy
+vs Square of Frequency with $\omega=\sin(t)$. However, if we replace
+$\omega(t)=\sin t$ with $\omega(t)=\sin t+3$, the relation between
+$E$ and $\omega^{2}$ is almost linear again. We also feel it necessary
+to point out that in the scatter plots of Energy vs Square of Frequency
+with $\omega=e^{t}$ the relation between $E$ and $\omega^{2}$ deviates
+from the linear relation as E gets larger but this deviation might
+be caused by the inaccuracy of doing integration in our program.
+
+Hence we put forward our our first conjecture. 
+\begin{conjecture}
+The relation between $E$ and $\omega^{2}$ is a linear relation,
+$i.e.\, E(t)=a\cdot\omega^{2}(t)+b$.\end{conjecture}
+\begin{thm}
+$E(t)=a\cdot w^{2}(t)+b$ if and only if $x(t)$ is a constant function.\end{thm}
+\begin{proof}
+Recall that $E=\frac{(x')^{2}}{2}+\frac{\omega^{2}x^{2}}{2}$. Then
+we have 
+\begin{alignat*}{1}
+E' & =x'x''+\omega\omega'x^{2}+\omega^{2}xx'\\
+ & =x'(\omega^{2}x+x'')+\omega\omega'x^{2}\\
+ & =0+\omega\omega'x^{2}\\
+ & =\omega\omega'x^{2}.
+\end{alignat*}
+Since $E(t)=a\cdot w^{2}(t)+b$, $E'=2a\cdot\omega\omega'$. Hence
+$2a=x^{2}$, $x=\sqrt{2a}$ is a constant. Therefore, if $E(t)=a\cdot w^{2}(t)+b$
+then $x(t)$ a is constant function. Conversely, suppose $x(t)$ is
+a constant function, then $x^{2}(t)$ is a constant function as well.
+Recall that $E'=\omega\omega'x^{2}=(\omega^{2})'\cdot\frac{x^{2}}{2}$.
+If $\frac{x^{2}}{2}$ is a constant, taking the integral on both sides
+yields $E(t)=\frac{x^{2}}{2}\omega(t)^{2}+c$ where $c$ is a constant. 
+\end{proof}
+Note that it's impossible that $E\propto\omega^{2}$ if $x(t)$ is
+a non-constant function. Hence our first conjecture can not describe
+the relation between $E$ and $\omega^{2}$ precisely in any case
+other than the trivial case of constant $\omega$. However in most
+of the plots above with $\omega(t)$ non-constant, all the points
+of $(\omega^{2},E)$ are scattered along some straighty line. Therefore
+we contemplate that $E(\omega^{2})$ are bounded by some linear functions
+of $\omega^{2}$. This could happen if $\omega\omega'\geqslant0,\forall t$
+or $\omega\omega'\leqslant0,\forall t$ and $x$ was bounded or in
+other words $x^{2}$ is bounded. If $a\leqslant x^{2}\leqslant b$
+for some $a,b\geqslant0$ and $(\omega^{2})'\geqslant0$. We have
+$a\cdot(\omega^{2})'\leqslant(\omega^{2})'x^{2}\leqslant b\cdot(\omega^{2})'$.
+If $(\omega^{2})'=2\omega\omega'<0$, we have $b\cdot(\omega^{2})'\leqslant(\omega^{2})'x^{2}\leqslant a\cdot(\omega^{2})'$.
+Taking the integral on each term yields $a\omega^{2}+c_{1}\leqslant E\leqslant b\omega^{2}+c_{2}$
+if $(\omega^{2})'\geqslant0$ and $b\omega^{2}+c_{1}\leqslant E\leqslant a\omega^{2}+c_{2}$
+if $(\omega^{2})'<0$ where $c_{1},c_{2}\in R$. 
+\begin{thm}
+If $k>0$ and $\omega(t)=e^{k\cdot t+b}$, then x is bounded.\end{thm}
+\begin{proof}
+Recall
+\[
+E'=\omega\omega'x^{2}.
+\]
+Then we have
+\[
+\begin{array}{ccc}
+E' & = & e^{k\cdot t+b}\cdot k\cdot e^{k\cdot t+b}x^{2}\\
+ & = & k\cdot\omega^{2}x^{2}
+\end{array}.
+\]
+$k\cdot\omega^{2}x^{2}\leqslant2k\cdot(\frac{(x')^{2}}{2}+\frac{\omega^{2}x^{2}}{2})=2kE\Rightarrow E'\leqslant2kE$.
+When $x\neq0$, we have $E>0$. Then we get $\frac{E'}{E}\leqslant2k$.
+Integrate on both site and we have $\int_{0}^{t}\frac{E'}{E}dt\leqslant\int_{0}^{t}2k\, dt$
+and $\log E(t)-\log E(0)\leqslant2kt$. $E(t)\leqslant E(0)\cdot e^{2kt}$.
+Since $E(t)=\frac{(x')^{2}}{2}+\frac{\omega^{2}x^{2}}{2}\geqslant\frac{\omega^{2}x^{2}}{2}$,
+we get $\frac{\omega^{2}x^{2}}{2}\leqslant E(0)\cdot e^{2kt}\Rightarrow\frac{e^{2k\cdot t+2b}\cdot x^{2}}{2}\leqslant E(0)\cdot e^{2k\cdot t}$.
+Hence we have $x^{2}\leqslant\frac{2E(0)}{e^{2b}}$ which shows $x$
+is bounded.\end{proof}
+\begin{conjecture}
+Define $f(t)={\displaystyle \inf_{x\geqslant t}}\omega^{2}(x)$. If
+$\int_{0}^{t}\omega^{2}(t)dt\neq0\,\forall t>0$ and ${\displaystyle \lim_{t\rightarrow\infty}f(t)>0}$,
+$x(t)$ is bounded.
+\end{conjecture}
+We will show this statement is not correct in next section.
+
+
+\section{Notes on $\omega(t)=\sin(kt)+c$}
+
+For certain $k$ and $c$, $\sin(kt)+c$ might not suffice the condition
+of the conjecture since they can reach 0 periodically, so the displacement
+may or may not be bounded. We first consider $\omega(t)=\sin(t)$.
+From the graph, it's reasonable to contemplate that $x(t)$ is bounded.
+Even though the graph is hard to interpret, there're still some interesting
+discoveries about the relation between $E(t)$ and $\omega^{2}(t)$.
+
+\begin{figure}[H]
+\begin{centering}
+\protect\caption{Graph of E(t) versus $\omega^{2}(t)$ when $\omega(t)=\sin(t)$}
+
+\par\end{centering}
+
+\centering{}\includegraphics[width=12cm]{Screen Shot 2015-02-09 at 8.27.37 PM.png}
+\end{figure}
+
+
+In this graph, the green curve is the graph of $E(t)$ and the orange
+curve is the graph of $\omega^{2}(t)$. As can be seen from the graph,
+similar patterns appears on the graph of $E(t)$ periodically with
+period equal to about 10s. We also want to point out that whenever
+$\omega^{2}(t)$ reaches zero, or local minimum, $E(t)$ reaches a
+local minimum and whenever $\omega^{2}(t)$ reaches a local maximum,
+$E(t)$ also reaches local minimum. So we put forward our next theorem.
+\begin{thm}
+If $\omega^{2}(t)$ reaches a local minimum(maximum) at $t=t_{0}$
+and $x(t_{0})\neq0,$ $E(t)$ also reaches a local minimum(maximum). \end{thm}
+\begin{proof}
+As we have shown above, $E'(t)=(\omega^{2}(t))'x^{2}(t)$. Let $g(t)=\omega^{2}(t).$
+Let $g(t)=\omega^{2}(t)$. We can write $E'(t)=g'(t)x^{2}(t)$. When
+$g(t)$ is at a local maximum and minimum, $g'(t)=0$. Then $E'(t)$=
+0. $E''(t)=g''(t)\cdot x^{2}(t)+2g'(t)\cdot x(t)\cdot x'(t)=g''(t)x^{2}(t)$.
+When $x^{2}(t)$ is not zero, if $g''(t)>0$ we can get $E''(t)>0$
+and if $g''(t)<0$, we have $E''(t)<0$. Based on the second-order
+derivative test, we know when if $g(t)$ reaches a local minimum at
+$t_{0}$ and $x(t_{0})\neq0$, so does $E(t)$ at $t=t_{0}$ and if
+$g(t)$ reaches a local minimum at $t_{0}$ and $x(t_{0})\neq0$,
+so does $E(t)$ at $t=t_{0}$. 
+\end{proof}
+Now we consider the general case of $\omega(t)=\sin(kt)+c$. Here
+we present the graphs of $E'(t)$ and $x'(t)$ with $\omega(t)=\sin(kt)+c$
+for different $k$'s and $c'$s.
+
+\begin{figure}[H]
+\begin{centering}
+\protect\caption{$x(t)$ when $\omega(t)=\sin(t)+\pi$}
+
+\par\end{centering}
+
+\centering{}\includegraphics[width=12cm]{x(t)}
+\end{figure}
+
+
+\begin{figure}[H]
+\begin{centering}
+\protect\caption{$x^{2}(t)$ when $\omega(t)=\sin(t)+\pi$}
+
+\par\end{centering}
+
+\centering{}\includegraphics{x^2(t)}
+\end{figure}
+
+
+\begin{figure}[H]
+\begin{centering}
+\protect\caption{$E'(t)$ when $\omega(t)=\sin(t)+\pi$}
+
+\par\end{centering}
+
+\centering{}\includegraphics{E'(t)}
+\end{figure}
+
+
+\begin{figure}[H]
+\begin{centering}
+\protect\caption{$E'(t)$ when $\omega(t)=\sin(t)$}
+
+\par\end{centering}
+
+\centering{}\includegraphics{E'(sin(t))}
+\end{figure}
+
+
+\begin{figure}[H]
+\begin{centering}
+\protect\caption{$E'(t)$ when $\omega(t)=\sin(t)+1$}
+
+\par\end{centering}
+
+\centering{}\includegraphics{E'(w(t)+1)}
+\end{figure}
+
+
+From then the plots in above, we see that the period of $E$ does
+not exactly equal to $2\pi$ for $\omega(t)=\sin t+c$ but it become
+increasingly close to $2\pi$ as $c$ increases.
+
+If $\omega(t)=\sin t$, $(\omega^{2})'=\sin2t=2(\sin t\cdot\cos t$),
+$E'=\omega\omega'x^{2}=x^{2}(\sin t\cdot\cos t)$. However if $\omega(t)=\sin t+c$,
+$(\omega^{2})'=2(\sin t\cdot\cos t+c\cos t)$, $E'=x^{2}(\sin t\cdot\cos t+c\cos t)$.
+Since we have $c\cos t$ as a new factor in $E'$, we see that as
+$c$ increasing, the factor $c\sin t$ is sufficiently large in $E'$,
+which is the major factor in changing the rate of $E$, hence the
+shape of $E$ is corresponding to $\int(c\cos t)dt=c\int(\cos t)dt=c\sin t+C$
+as $c$ become relative large.
+
+Now we consider some cases of $\omega(x)=\sin t+c$ where $c\neq0$.
+\begin{thm*}
+(Floquet's Theorem) Suppose A (t) is periodic. Then the principal
+matrix solution of the corresponding linear system has the form
+\[
+\Pi(t,t_{0})=P(t,t_{0})exp((t-t_{0})Q(t_{0})),
+\]
+ where $P(.,t_{0})$ has the same form as $A(.)$ and $P(t_{0},t_{0})=1$
+and $Q(t_{0}+T)=Q(t_{0})$ and $\exp(TQ(t_{0}))=$ $\Pi(t_{0}+T,t_{0})$. \end{thm*}
+\begin{fact}
+$E(t)$, the energy of the object, is not bounded above for some $\omega=\sin t+c$
+where $c\in\mathbb{R}$.
+
+Since $E'=\omega\omega'x^{2}$, then 
+\[
+\begin{array}{ccc}
+E' & = & (\sin t+c)\cos tx^{2}\\
+ & = & (\sin t\cos t+c\cos t)x^{2}
+\end{array}.
+\]
+
+
+
+Since $\sin t\cdot\cos t+c\cdot\cos t$ is bounded, then the boundedness
+of $E'$ depends on $x^{2}$. Let $y=x'$. We can transfrom the given
+equation into $\left(\begin{array}{c}
+y'\\
+x'
+\end{array}\right)+\left(\begin{array}{cc}
+0 & \omega^{2}\\
+-1 & 0
+\end{array}\right)\left(\begin{array}{c}
+y\\
+x
+\end{array}\right)=\left(\begin{array}{c}
+0\\
+0
+\end{array}\right)$. Then we get a two-dimentional periodic lienar system. By Floquet's
+theorem, $\left(\begin{array}{cc}
+y_{1}(t) & y_{2}(t)\\
+x_{1}(t) & x_{2}(t)
+\end{array}\right)=P(t,t_{0})\exp((t-t_{0})Q(t_{0}))$. It is also true that any fundamental matrix solution can be written
+in the form $V(t)\exp(tR)$ where $V(t)$ is periodic and $R$ is
+similar to $Q(t_{0})$. Moreover, note that $Q(t_{0})$ will be complex
+even if $A(t)$ is real unless all real eigenvalues of $M(t_{0})$
+are positive. However, since A(t) also has the period $2T$ and $\left(\begin{array}{cc}
+y_{1}(t+2T) & y_{2}(t+2T)\\
+x_{1}(t+2T) & x_{2}(t+2T)
+\end{array}\right)=M(t_{0})^{2}$, then we can find a real logarithm for $A^{2}$. 
+\begin{casenv}
+\item When $c=0$, $\omega(t_{0})=\omega(0)=\sin0+0=0$. Then we have $\left(\begin{array}{cc}
+y_{1}(t) & y_{2}(t)\\
+x_{1}(t) & x_{2}(t)
+\end{array}\right)=V(t)\exp(tR)$. Note $R$ is a constant matrix. Since $\exp(tR)$ is bounded, then
+boundedness of the matrix solution is control by $V(t)$. Since $V(t)$'s
+entries can be written in the form $\frac{N(t)}{k\cdot\omega(t)}$
+where $P'(t)$ is a periodic functions with period $T=2\pi$ and $P'(kT)=0,\forall k\in\mathbb{Z}_{\geq0}$
+then $V(t)$ will not blow up $\forall t\geq0$ as $\omega(t)$ and
+$P'(t)$ get local min(max) in the same period. 
+\item When $c\neq0$, we have $V(t)=\frac{N(t)}{k\cdot\omega(t)+c}$ . Since
+the denominator $k\cdot\omega(t)+c=0$, $P'(t)=-c\neq0$. If $k\omega(t)+c>0,\forall t$
+then $V(t)$ won't blow up. If $c\in[\min\{k\sin t\},\max\{k\sin t\}\}]$,
+$V(t)$ will blow up and we $E'(t_{0})=\infty$ at $t_{0}=kT=2k\pi$.
+\end{casenv}
+\end{fact}
+\begin{example}
+$\omega(t)=sin(t)+1$.
+\end{example}
+Since $V(t)=\frac{N(t)}{ksin(t)+c}$, we get $k\approx0.48$. Hence
+$E'$ will blow up if we pick $c\in[1-0.48,1+0.48]$. Since $1$ is
+in this interval, then $E$ will definitely blows up. Note $V$ blows
+up periodicly at $2k\pi=k\cdot T,k\neq0$. 
+
+\begin{figure}[H]
+\begin{centering}
+\protect\caption{$E(t)$ and $\omega(t)$ when $\omega(t)=\sin(t)+1$}
+
+\par\end{centering}
+
+\centering{}\includegraphics[width=12cm]{\string"Screen Shot 2015-02-23 at 12.20.56 PM\string".png}
+\end{figure}
+
+\begin{thm}
+For all piecewise continuous periodic function $a(t)$ with period
+$T$ and amplitude $A$, if the solution to the differential equation
+$x''(t)+a^{2}(t)x(t)=0$ written in the form of $V(t)\exp(tR)$ such
+that $V(t)=\frac{N(t)}{ka(t)+c}$ and$N(t)$ is a periodic function
+with period $T$ suffices $\int_{t_{0}}^{t_{0}+kT}a(s)ds=0$ or, $k\neq0$
+and $c\geqslant k$, the energy of the system is bounded.\end{thm}
+\begin{proof}
+Since $E=\frac{(x'(t))^{2}}{2}+\frac{\omega^{2}(t)x^{2}(t)}{2}\geqslant0.$
+It is bounded below.
+
+Recall from pervious Fact, we can write $V(t)=\frac{N(t)}{k\cdot a(t)+c}$.
+Since $\int_{t_{0}}^{t_{0}+kT}a(s)ds=0$, we have $c=0$, which means
+that the denominator $k\cdot a(t)+c=0$ if and only if $N(t)=0$.
+Hence $V$ is bounded above in this case. 
+
+If $ka(t)+c$'s amplitude does not intersect with $x$-axis, then
+$c\notin[\min\{ka(t)\},\max\{ka(t)\}\}]$. It implies that $V(t)$
+will blow up and we have $E'(t_{0})=\infty$ at $t_{0}=kT$. Therefore,
+$E$ will not blows up in the two cases stated in the theorem.
+
+\end{proof}
+\bibliography{proj1}
+\bibliographystyle{amsalpha}   
+\end{document}
